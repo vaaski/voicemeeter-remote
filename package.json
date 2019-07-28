@@ -1,18 +1,21 @@
 {
   "name": "voicemeeter-remote",
   "version": "0.0.5",
-  "description": "A Node.js voicemeeter remote wrapper",
+  "description": "A Node.js voicemeeter remote wrapper with Node.js 12 support",
   "main": "index.js",
   "author": "Mickael MAYEUR",
+  "contributors": [
+    "vaaski <admin@vaa.ski>"
+  ],
   "license": "MIT",
   "dependencies": {
-    "ffi": "^2.3.0",
-    "ref-array": "^1.2.0",
+    "ffi": "github:lxe/node-ffi#node-12",
+    "ref-array": "github:lxe/ref-array#node-12",
     "winreg": "^1.2.4"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Mikatux/voicemeeter-remote.git"
+    "url": "https://github.com/vaaski/voicemeeter-remote.git"
   },
   "keywords": [
     "voicemeeter",
