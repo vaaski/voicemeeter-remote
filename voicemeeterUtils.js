@@ -149,7 +149,8 @@ const VoicemeeterDefaultConfig = {
 const VoicemeeterType = {
   unknow: 0,
   voicemeeter: 1,
-  voicemeaterBanana: 2,
+  voicemeeterBanana: 2,
+  voicemeaterPotato: 3,
 }
 const InterfaceType = {
   strip: 0,
