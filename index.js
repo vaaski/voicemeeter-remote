@@ -71,7 +71,7 @@ const voicemeeter = {
     return libvoicemeeter.VBVMR_IsParametersDirty()
   },
   getParameter(parameterName) {
-    if (!this.isConnected) throw "Not connected "
+    if (!this.isConnected) throw "Not connected"
 
     const hardwareIdPtr = new Buffer(parameterName.length + 1)
     hardwareIdPtr.write(parameterName)
@@ -125,7 +125,7 @@ const voicemeeter = {
     throw "Connection failed"
   },
   logout() {
-    if (!this.isConnected) throw "Not connected "
+    if (!this.isConnected) throw "Not connected"
 
     if (libvoicemeeter.VBVMR_Logout() === 0) {
       this.isConnected = false
@@ -134,7 +134,7 @@ const voicemeeter = {
     throw "Logout failed"
   },
   updateDeviceList() {
-    if (!this.isConnected) throw "Not connected "
+    if (!this.isConnected) throw "Not connected"
 
     this.outputDevices = []
     this.inputDevices = []
@@ -167,16 +167,16 @@ const voicemeeter = {
     }
   },
 
-  _sendRawParaneterScript(scriptString) {
+  _sendRawParameterScript(scriptString) {
     const script = new Buffer(scriptString.length + 1)
     script.fill(0)
     script.write(scriptString)
     return libvoicemeeter.VBVMR_SetParameters(script)
   },
   _setParameter(type, name, id, value) {
-    if (!this.isConnected) throw "Not connected "
+    if (!this.isConnected) throw "Not connected"
 
-    if (!this.voicemeeterConfig || isEmpty(this.voicemeeterConfig)) throw "Configuration error  "
+    if (!this.voicemeeterConfig || isEmpty(this.voicemeeterConfig)) throw "Configuration error"
 
     const interfaceType = type === InterfaceType.strip ? "Strip" : "Bus"
     const voicemeeterConfigObject = type === InterfaceType.strip ? "strips" : "buses"
@@ -184,12 +184,12 @@ const voicemeeter = {
     if (this.voicemeeterConfig[voicemeeterConfigObject].findIndex(strip => strip.id === id) === -1)
       throw `${interfaceType} ${id} not found`
 
-    return this._sendRawParaneterScript(`${interfaceType}[${id}].${name}=${value};`)
+    return this._sendRawParameterScript(`${interfaceType}[${id}].${name}=${value};`)
   },
   _setParameters(parameters) {
-    if (!this.isConnected) throw "Not connected "
+    if (!this.isConnected) throw "Not connected"
 
-    if (!this.voicemeeterConfig || isEmpty(this.voicemeeterConfig)) throw "Configuration error  "
+    if (!this.voicemeeterConfig || isEmpty(this.voicemeeterConfig)) throw "Configuration error"
 
     if (!Array.isArray(parameters)) throw interfaceType + " not found"
 
@@ -205,7 +205,7 @@ const voicemeeter = {
       })
       .join("\n")
 
-    return this._sendRawParaneterScript(script)
+    return this._sendRawParameterScript(script)
   },
 }
 
